@@ -1,0 +1,10 @@
+
+<div class="container">
+	<div class="btn-group" role="group" aria-label="Basic example">
+		<%= button_to "Random", random_bingos_path, class: "btn btn-primary" %>
+
+		<%= link_to "Download IMAGE", @path, class: "btn btn-secondary ", download: "", target: "_blank" %>
+	</div>
+	<br>
+	<%= link_to image_tag(@path), @path, target: "_blank" %>
+</div>

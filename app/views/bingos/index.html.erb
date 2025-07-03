@@ -1,0 +1,22 @@
+<div class="container">
+    <%= form_with url: bingos_path do |form| %>
+        <% i = 1 %>
+        
+        <% Constants.get_card_list.each do |card| %>
+            
+            <% if (i % 5) == 1 %>
+                <ul class="list-group list-group-horizontal">
+            <% end %>
+                    <li class="list-group-item"> 
+                        <%= check_box_tag 'card_ids[]', card -%>
+                        <%= h card -%>
+                    </li>
+            <% if (i % 5) == 0 %>
+                </ul>
+            <% end -%>
+            <% i += 1 %>
+        <% end %>
+        <%= form.submit "GO", class: "btn btn-primary" %>
+    <% end %>
+    <%= image_tag("bingo.png") %>
+</div>

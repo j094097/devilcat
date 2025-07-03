@@ -1,0 +1,20 @@
+<%#= Constants.get_random_card(25) %>
+<div class="container">
+	<% i = 1 %>
+	<% Constants.get_random_card(25).each do |card| %>
+		<% if (i % 5) == 1 %>
+			<ul class="list-group list-group-horizontal">
+		<% end %>
+			<li class="list-group-item"> 
+				<%= h card -%>
+			</li>
+		<% if (i % 5) == 0 %>
+			</ul>
+		<% end -%>
+		<% i += 1 %>
+	<% end -%>
+
+	<%= button_to "Random", random_bingos_path, class: "btn btn-primary" %>
+
+	<%= image_tag("bingo.png") %>
+</div>
