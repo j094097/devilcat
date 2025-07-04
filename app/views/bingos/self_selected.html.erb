@@ -1,11 +1,10 @@
 <div class="container">
-    <%#= @card_ids %>
-    
+    <h2>Please select <%= @card_ids.length %> / 25 cards</h2>
+
     <%= form_with url: self_selected_bingos_path, data: { turbo:false } do |form| %>
         <% i = 1 %>
         
         <% Constants.get_card_list.each do |card| %>
-            
             <% if (i % 5) == 1 %>
                 <ul class="list-group list-group-horizontal">
             <% end %>
@@ -23,10 +22,38 @@
             <% end -%>
             <% i += 1 %>
         <% end %>
-        <%= form.submit "GO", class: "btn btn-primary" %>
+        <%= form.submit "Selected", class: "btn btn-primary" %>
     <% end %>
 
-    <% if @card_ids.any? && @card_ids.length <= 25 %>
+    <% if @card_ids.any? && @card_ids.length == 25 %>
+        <h2>Custom Weight</h2>
+
+        <%= form_with url: self_selected_bingos_path, class: 'row g-3', data: { turbo:false } do |form| %>
+
+            <% if @results.empty? %>
+                <% @card_ids.each do |card| %>
+                    <div class="col-md-2">
+                        <%= form.label card, class: 'form-label' %>
+                        <%= form.text_field 'card_ids[]', value: card, class: 'form-control d-none' %>
+                        <%= form.text_field ('results['+card.to_s+']'), class: 'form-control', value: 0 %>
+                    </div>
+                <% end -%>
+            <% else %>
+                <% @results.each do |n, v| %>
+                    <div class="col-md-2">
+                        <%= form.label n, class: 'form-label' %>
+                        <%= form.text_field 'card_ids[]', value: n, class: 'form-control d-none' %>
+                        <%= form.text_field ('results['+n.to_s+']'), class: 'form-control', value: v %>
+                    </div>
+                <% end -%>
+            <% end -%>
+            <div class="col-12">
+                <%= form.submit "Changed", class: "btn btn-primary" %>
+            </div>
+        <% end %>
+    <% end -%>
+
+    <% if @results.any? && @results.length == 25 %>
         <%= link_to image_tag(@path), @path, target: "_blank" %>
     <% else %>
         <%= image_tag("bingo.png") %>

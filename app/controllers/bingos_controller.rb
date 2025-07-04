@@ -1,17 +1,8 @@
 class BingosController < ApplicationController
-  # before_action :clean_params, only: [:index, :create]
-
   require "rmagick"
 
   def index
   end
-
-  # def create
-  #   print clean_params
-
-  #   @card_ids = clean_params
-  #   render :action => :index
-  # end
 
   def random
   end
@@ -23,7 +14,18 @@ class BingosController < ApplicationController
       @card_ids = []
     end
 
-    if @card_ids.any? && @card_ids.length <= 25
+    if @card_ids.length == 25 && params[:results]
+      @results = results_params
+
+      # @results = @results.to_enum.sort_by(&:last)
+
+      @results = @results.to_enum.to_h.sort_by { |k| k.last.to_i }
+    else
+      @results = []
+    end
+
+    if @results.any? && @results.length <= 25
+
       images_path = "public/images"
       @file_name = "self_selected.jpg"
       file_path = images_path + "/" + @file_name
@@ -43,7 +45,7 @@ class BingosController < ApplicationController
       y_axis = [ -400, -200, -40, 140, 320 ]
       x = 0
       y = 0
-      @card_ids.each do |card|
+      @results.each do |card, value|
         if card.length > 5
           text.pointsize = 20
         else
@@ -117,5 +119,9 @@ class BingosController < ApplicationController
   private
     def clean_params
       params.require(:card_ids)
+    end
+
+    def results_params
+      params.require(:results)
     end
 end
