@@ -110,7 +110,7 @@ class BingosController < ApplicationController
     end
 
     thumb = img.scale(1)
-    @path = "/images/" + @file_name
+    @path = "/images/" + @file_name + "?timestamp=" + Time.now.to_time.to_i.to_s
     thumb.write file_path
   end
 
