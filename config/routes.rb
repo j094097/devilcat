@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     collection do
       get :random
       get :generate
+      get :self_selected
+      post :self_selected
     end
   end
   root "home#index"
