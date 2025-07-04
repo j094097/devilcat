@@ -63,7 +63,7 @@ class BingosController < ApplicationController
       end
 
       self_selected = img.scale(1)
-      @path = "/images/" + @file_name + "?timestamp=" + Date.today.to_time.to_i.to_s
+      @path = "/images/" + @file_name + "?timestamp=" + Time.now.to_time.to_i.to_s
       self_selected.write file_path
     end
   end
