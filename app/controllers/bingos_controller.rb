@@ -14,7 +14,9 @@ class BingosController < ApplicationController
 
     @random_cards = Constants.get_random_card(25)
 
-    File.delete file_path if File.exist? file_path
+    if File.exist? file_path
+      File.delete file_path 
+    end
 
     img = Magick::Image.read("lib/sample_images/bingo.png").first
 
@@ -46,7 +48,6 @@ class BingosController < ApplicationController
       end 
     end
 
-    print @file_name
     thumb = img.scale(1)
     @path = "/images/" + @file_name
     thumb.write file_path
