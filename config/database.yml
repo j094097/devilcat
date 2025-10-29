@@ -81,6 +81,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
     database: devilcat_production
     username: devilcat
     password: <%= ENV["DEVILCAT_DATABASE_PASSWORD"] %>
