@@ -1,0 +1,11 @@
+<% content_for :title, "Editing estate" %>
+
+<h1>修改財產 #<%= @estate.id %></h1>
+
+<%= render "form", estate: @estate %>
+
+<br>
+
+<div>
+  <%= link_to "返回首頁", estates_path, class: "btn btn-primary" %>
+</div>

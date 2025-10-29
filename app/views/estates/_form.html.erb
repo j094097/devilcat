@@ -1,0 +1,29 @@
+<%= form_with(model: estate, class: "container mb-3") do |form| %>
+  <% if estate.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(estate.errors.count, "error") %> prohibited this estate from being saved:</h2>
+
+      <ul>
+        <% estate.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="mb-3">
+      <%= form.label :role_id, "誰", class: "form-label" %>
+      <%= form.select :role_id, [["惡魔貓", "惡魔貓"], ["老P", "老P"]], {}, class: "form-select" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :value, "多少錢", class: "form-label" %>
+      <%= form.text_field :value, class: "form-control", value: estate.try(:value) %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :custom_timestamp, "計算時間", class: "form-label" %>
+      <%= form.datetime_select :custom_timestamp, minute_step: 30, class: "form-control" %>
+    </div>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

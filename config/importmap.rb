@@ -11,4 +11,7 @@ pin "@popperjs/core", to: "https://unpkg.com/@popperjs/core@2.11.6/dist/esm/inde
 
 
 # pin "@popperjs/core", to: "popper.js", preload: true
-# pin "bootstrap", to: "bootstrap.min.js", preload: true
+# pin "bootstrap", to: "bootstrap.min.js", preload: truepin "echarts", to: "echarts.min.js"
+
+pin "chartkick", to: "chartkick.js"
+pin "Chart.bundle", to: "Chart.bundle.js"

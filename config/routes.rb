@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :estates
   resources :bingos do
     collection do
       get :random

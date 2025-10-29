@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Estates" %>
+
+<h1>惡魔貓 VS 老P</h1>
+
+<%= link_to "新增", new_estate_path, class: "btn btn-primary" %>
+
+<table id="estates" class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">誰</th>
+      <th scope="col">多少錢</th>
+      <th scope="col">計算時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @estates.each do |estate| %>
+      <tr>
+        <th scope="row">
+          <%= link_to estate.id, edit_estate_path(estate) %>
+        </th>
+        <td>
+          <%= estate.role_id %>
+        </td>
+        <td>
+          <%= estate.value %>
+        </td>
+        <td>
+          <%= estate.custom_timestamp %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

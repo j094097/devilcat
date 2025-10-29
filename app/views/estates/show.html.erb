@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @estate %>
+
+<div>
+  <%= link_to "Edit this estate", edit_estate_path(@estate) %> |
+  <%= link_to "Back to estates", estates_path %>
+
+  <%= button_to "Destroy this estate", @estate, method: :delete %>
+</div>

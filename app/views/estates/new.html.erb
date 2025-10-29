@@ -1,0 +1,11 @@
+<% content_for :title, "New estate" %>
+
+<h1>財產申報</h1>
+
+<%= render "form", estate: @estate %>
+
+<br>
+
+<div>
+  <%= link_to "返回首頁", estates_path, class: "btn btn-primary" %>
+</div>
