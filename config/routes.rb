@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  get 'about', to: 'pages#about'
+
   resources :estates
+  
   resources :bingos do
     collection do
       get :random
@@ -8,6 +11,8 @@ Rails.application.routes.draw do
       post :self_selected
     end
   end
+
+
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
